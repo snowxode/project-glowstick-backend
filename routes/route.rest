@@ -1,0 +1,28 @@
+### Get all users
+GET http://localhost:3000/users/
+
+### Get one user by id
+GET http://localhost:3000/users/64bfeadbd11b8141d284a540
+
+### Create user
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+    "name": "John Doe",
+    "email": "emailnotfound@notexist.com",
+    "password": "123456"
+}
+
+
+### Delete user by id
+DELETE http://localhost:3000/users/<id>
+
+
+### Update user by id
+PATCH http://localhost:3000/users/64bfeb700b5056c3eb0415fe
+Content-Type: application/json
+
+{
+    "name": "Specky Dope"
+}
