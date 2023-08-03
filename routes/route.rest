@@ -10,7 +10,9 @@ Content-Type: application/json
 
 {
     "name": "John Doe",
+    "username": "johndoe",
     "email": "emailnotfound@notexist.com",
+    "phoneNumber": "+44 3489742425",
     "password": "123456"
 }
 
@@ -20,7 +22,7 @@ DELETE http://localhost:3000/users/<id>
 
 
 ### Update user by id
-PATCH http://localhost:3000/users/64bfeb700b5056c3eb0415fe
+PATCH http://localhost:3000/users/<id>
 Content-Type: application/json
 
 {
