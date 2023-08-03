@@ -21,7 +21,9 @@ router.get('/:id', getUser,(req, res) => {
 router.post('/', async (req, res) => {
     const user = new User({
         name: req.body.name,
+        username: req.body.username,
         email: req.body.email,
+        phoneNumber: req.body.phoneNumber,
         password: req.body.password
     })
     try {
@@ -37,8 +39,14 @@ router.patch('/:id', getUser, async (req, res) => {
     if (req.body.name != null) {
         res.user.name = req.body.name;
     }
+    if (req.body.username != null) {
+        res.user.username = req.body.username;
+    }
     if (req.body.email != null) {
         res.user.email = req.body.email;
+    }
+    if (req.body.phoneNumber != null) {
+        res.user.phoneNumber = req.body.phoneNumber;
     }
     if (req.body.password != null) {
         res.user.password = req.body.password;
