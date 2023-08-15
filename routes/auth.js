@@ -36,7 +36,7 @@ router.post('/login', async (req, res) => {
             res.status(401).send('Invalid password');
         } else {
             let payload = { subject: user._id };
-            let token = jwt.sign(payload, 'secretKey');
+            let token = jwt.sign(payload, `${process.env.JWT_SECRET}`);
             res.status(200).send({ token });
         }
     } catch (err) {
