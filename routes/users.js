@@ -12,27 +12,11 @@ router.get('/', async (req, res) => {
     }
 });
 
-// Get one user
+// Get one user (id or username)
 router.get('/:id', getUser,(req, res) => {
     res.json(res.user);
 });
 
-// Create one user
-router.post('/', async (req, res) => {
-    const user = new User({
-        name: req.body.name,
-        username: req.body.username,
-        email: req.body.email,
-        phoneNumber: req.body.phoneNumber,
-        password: req.body.password
-    })
-    try {
-        const newUser = await user.save();
-        res.status(201).json(newUser);
-    } catch(err) {
-        res.status(400).json({message: err.message});
-    }
-});
 
 // Update one user
 router.patch('/:id', getUser, async (req, res) => {
@@ -74,10 +58,14 @@ router.delete('/:id', getUser, async (req, res) => {
 // Middleware to get the user by ID
 async function getUser(req, res, next){
     try{
-        user = await User.findById(req.params.id);
+        user = await User.findOne({'username' : req.params.id});
         if (user == null){
-            return res.status(404).json({message: 'Cannot find user'});
+            user = await User.findById(req.params.id);
+            if (user == null){
+                return res.status(404).json({message: 'Cannot find user by id or username'});
+            }
         }
+
     } catch (err){
         return res.status(500).json({message: err.message});
     }

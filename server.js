@@ -1,6 +1,7 @@
 require("dotenv").config();
 
 const express = require("express");
+const jwt = require('jsonwebtoken')
 const app = express();
 const mongoose = require("mongoose");
 const cors = require('cors');
@@ -20,5 +21,8 @@ app.use(cors());
 // Routes
 const userRouter = require("./routes/users");
 app.use("/users", userRouter);
+
+const authRouter = require("./routes/auth");
+app.use("/auth", authRouter);
 
 app.listen(3000, () => console.log("Server is running..."));
