@@ -21,4 +21,7 @@ app.use(cors());
 const userRouter = require("./routes/users");
 app.use("/users", userRouter);
 
+const authRouter = require("./routes/auth");
+app.use("/auth", authRouter);
+
 app.listen(3000, () => console.log("Server is running..."));
