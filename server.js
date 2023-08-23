@@ -24,9 +24,13 @@ app.use("/users", userRouter);
 const authRouter = require("./routes/auth");
 app.use("/auth", authRouter);
 
+// TODO:  Write routes for other pages here
+// They will be imported like the above
+// Inside the front-end you can make requsts in the ngInit method of the component
 
+const recipeRouter = require("./routes/recipes");
+app.use("/recipes", recipeRouter);
 
 
 app.listen(3000, () => console.log("Server is running..."));
-
 

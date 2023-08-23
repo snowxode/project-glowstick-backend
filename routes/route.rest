@@ -43,3 +43,8 @@ Content-Type: application/json
     "phoneNumber": "+44 3489742425",
     "password": "123456"
 }
+
+
+###
+
+GET http://localhost:3000/recipes/
