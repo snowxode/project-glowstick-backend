@@ -26,7 +26,7 @@ app.use("/auth", authRouter);
 
 // TODO:  Write routes for other pages here
 // They will be imported like the above
-// Inside the front-end you can make requsts in the ngInit method of the component
+// Inside the front-end you can make requsts for data in the ngInit method of the component/on request
 
 const recipeRouter = require("./routes/recipes");
 app.use("/recipes", recipeRouter);
