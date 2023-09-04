@@ -16,6 +16,12 @@ router.post('/register', async (req, res) => {
         password: SHA256(req.body.password).toString()
     })
     try {
+        if (await User.findOne({'username' : req.body.username})) {
+            return res.status(401).send('Username already exists');
+        }
+        if (await User.findOne({'email' : req.body.email})) {
+            return res.status(401).send('Email already exists');
+        }
         const newUser = await userData.save();
         let payload = { subject : newUser._id}
         let token = jwt.sign(payload, `${process.env.JWT_SECRET}`)
