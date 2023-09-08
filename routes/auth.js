@@ -30,8 +30,13 @@ router.post('/register', async (req, res) => {
         // Create a token for the user
         let payload = { subject : newUser._id}
         let token = jwt.sign(payload, `${process.env.JWT_SECRET}`)
-        // Send the token to the client
-        res.status(200).send({token});
+
+        // Find the user in the database and send the token and userID to the client
+        let user = await User.findOne({ username: userData.username })
+        let userID = user._id;
+
+        res.status(200).send({token, userID});
+
     } catch(err) {
         // If there is an error, send the error message to the client
         res.status(400).json({message: err.message});
@@ -55,7 +60,8 @@ router.post('/login', async (req, res) => {
         else {
             let payload = { subject: user._id };
             let token = jwt.sign(payload, `${process.env.JWT_SECRET}`);
-            res.status(200).send({ token });
+            let userID = user._id;
+            res.status(200).send({ token, userID });
         }
     } catch (err) {
         // If there is an error, send the error message to the client
